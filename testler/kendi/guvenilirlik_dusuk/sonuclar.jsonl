@@ -1,0 +1,8 @@
+{"no":1,"komut":"kullanici_ekle","durum":"TAMAM"}
+{"no":2,"komut":"kullanici_ekle","durum":"TAMAM"}
+{"no":3,"komut":"rezervasyon","durum":"TAMAM","rezervasyon_id":"r1","ucret":4,"bakiye":116}
+{"no":4,"komut":"rezervasyon","durum":"RED","kod":"ILERI_TARIH_SINIRI"}
+{"no":5,"komut":"rezervasyon","durum":"TAMAM","rezervasyon_id":"r2","ucret":4,"bakiye":116}
+{"no":6,"komut":"rezervasyon","durum":"RED","kod":"ILERI_TARIH_SINIRI"}
+{"no":7,"komut":"paket","durum":"RED","kod":"GUVENILIRLIK_DUSUK","kalemler":[]}
+{"no":8,"komut":"paket","durum":"TAMAM","paket_id":"p1","rezervasyonlar":["r3","r4"],"ucretler":[4,4],"toplam":8,"bakiye":108}

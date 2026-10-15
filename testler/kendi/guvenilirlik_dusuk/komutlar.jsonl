@@ -1,0 +1,8 @@
+{"komut":"kullanici_ekle","id":"u4","ad":"u4","rol":"OGRENCI","sertifikalar":[],"bakiye":120,"guvenilirlik":49}
+{"komut":"kullanici_ekle","id":"u6","ad":"u6","rol":"OGRENCI","sertifikalar":[],"bakiye":120,"guvenilirlik":50}
+{"komut":"rezervasyon","kullanici":"u4","kaynak":"ODA-1","baslangic":"2027-03-09T08:00","bitis":"2027-03-09T09:00"}
+{"komut":"rezervasyon","kullanici":"u4","kaynak":"ODA-2","baslangic":"2027-03-09T08:15","bitis":"2027-03-09T09:15"}
+{"komut":"rezervasyon","kullanici":"u6","kaynak":"ODA-1","baslangic":"2027-03-15T08:00","bitis":"2027-03-15T09:00"}
+{"komut":"rezervasyon","kullanici":"u6","kaynak":"ODA-2","baslangic":"2027-03-15T08:15","bitis":"2027-03-15T09:15"}
+{"komut":"paket","kullanici":"u4","kalemler":[{"kaynak":"ODA-1","baslangic":"2027-03-08T12:00","bitis":"2027-03-08T13:00"},{"kaynak":"ODA-2","baslangic":"2027-03-08T12:00","bitis":"2027-03-08T13:00"}]}
+{"komut":"paket","kullanici":"u6","kalemler":[{"kaynak":"ODA-1","baslangic":"2027-03-08T12:00","bitis":"2027-03-08T13:00"},{"kaynak":"ODA-2","baslangic":"2027-03-08T12:00","bitis":"2027-03-08T13:00"}]}
