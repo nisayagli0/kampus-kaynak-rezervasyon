@@ -14,7 +14,8 @@ from rezervasyon import zaman
 from rezervasyon.modeller import ONAYLI, KULLANIMDA
 
 DILIM = timedelta(minutes=15)
-BANT = timedelta(hours=2)
+BANT_DK = 120  # her bant iki saat
+BANT = timedelta(minutes=BANT_DK)
 
 
 def bant_baslangici(t):
@@ -40,7 +41,7 @@ def doluluk(durum, tur, bant_bas):
         if bas < bit:
             dolu_dk += zaman.dakika_farki(bas, bit)
 
-    return Fraction(dolu_dk, kaynak_sayisi * 120)
+    return Fraction(dolu_dk, kaynak_sayisi * BANT_DK)
 
 
 def bant_carpani(oran):
