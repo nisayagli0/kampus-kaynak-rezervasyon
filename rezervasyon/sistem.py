@@ -8,7 +8,7 @@ Her fonksiyon bir sözlük döndürür:
 Zamanlar "YYYY-AA-GGTSS:DD" metni olarak gelir.
 """
 
-from rezervasyon import talep, yukleyici, zaman
+from rezervasyon import paket, talep, yukleyici, zaman
 from rezervasyon.modeller import Durum
 
 
@@ -35,7 +35,15 @@ class RezervasyonSistemi:
 
     def paket(self, kullanici, kalemler):
         """kalemler: [{"kaynak": ..., "baslangic": ..., "bitis": ...}, ...]"""
-        raise NotImplementedError
+        cevrilmis = [
+            {
+                "kaynak": k["kaynak"],
+                "baslangic": zaman.ayristir(k["baslangic"]),
+                "bitis": zaman.ayristir(k["bitis"]),
+            }
+            for k in kalemler
+        ]
+        return paket.paket(self.durum, kullanici, cevrilmis)
 
     def fiyat(self, kullanici, kaynak, baslangic, bitis):
         return talep.fiyat(

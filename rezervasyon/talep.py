@@ -8,13 +8,19 @@ from rezervasyon.dogrulama import dogrula
 from rezervasyon.modeller import Rezervasyon
 
 
-def rezervasyon_olustur(durum, kullanici_id, kaynak_id, baslangic, bitis, paket_id=None):
+def rezervasyon_olustur(
+    durum, kullanici_id, kaynak_id, baslangic, bitis, paket_id=None, ucret_degeri=None
+):
     """Ücreti hesaplar, bakiyeden düşer, rezervasyonu kaydeder.
 
     Doğrulamanın önceden yapıldığını varsayar. Numara burada, yani yalnızca
-    başarılı talepte tüketilir.
+    başarılı talepte tüketilir. Paket, ücretleri paket öncesi durumdan
+    hesaplayıp ucret_degeri ile verir (kalemler birbirinin doluluğuna katılmaz).
     """
-    fiyat_ = ucret.hesapla(durum, kaynak_id, baslangic, bitis)
+    if ucret_degeri is None:
+        fiyat_ = ucret.hesapla(durum, kaynak_id, baslangic, bitis)
+    else:
+        fiyat_ = ucret_degeri
     durum.kullanicilar[kullanici_id].bakiye -= fiyat_
 
     no = durum.yeni_rezervasyon_no()
