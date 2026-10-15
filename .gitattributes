@@ -1,0 +1,3 @@
+# .sh betikleri her zaman LF, .bat betikleri CRLF satır sonuyla saklanır
+*.sh text eol=lf
+*.bat text eol=crlf
