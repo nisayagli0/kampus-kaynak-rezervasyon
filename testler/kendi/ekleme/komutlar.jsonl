@@ -1,0 +1,22 @@
+{"komut":"kullanici_ekle","id":"u1","ad":"Ayşe Kaya","rol":"OGRENCI","sertifikalar":[],"bakiye":120,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"u1","ad":"Ayşe Kaya","rol":"OGRENCI","sertifikalar":[],"bakiye":120,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"u3","ad":"Elif Şahin","rol":"ARASTIRMACI","sertifikalar":[],"bakiye":100,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"u4","ad":"Can Yılmaz","rol":"MISAFIR","sertifikalar":[],"bakiye":50,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"u4","ad":"Can Yılmaz","rol":"OGRENCI","sertifikalar":[],"bakiye":-1,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"u4","ad":"Can Yılmaz","rol":"OGRENCI","sertifikalar":[],"bakiye":121,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"u4","ad":"Can Yılmaz","rol":"ARASTIRMACI","sertifikalar":[],"bakiye":300,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"u5","ad":"Zeynep Ak","rol":"OGRENCI","sertifikalar":[],"bakiye":0,"guvenilirlik":101}
+{"komut":"kullanici_ekle","id":"u5","ad":"Zeynep Ak","rol":"OGRENCI","sertifikalar":[],"bakiye":0,"guvenilirlik":-1}
+{"komut":"kullanici_ekle","id":"u5","ad":"Zeynep Ak","rol":"OGRENCI","sertifikalar":[],"bakiye":0,"guvenilirlik":80.5}
+{"komut":"kullanici_ekle","id":"u5","ad":"Zeynep Ak","rol":"OGRENCI","sertifikalar":[],"bakiye":0,"guvenilirlik":"80"}
+{"komut":"kullanici_ekle","id":"u5","ad":"Zeynep Ak","rol":"OGRENCI","sertifikalar":[],"bakiye":0,"guvenilirlik":true}
+{"komut":"kullanici_ekle","id":"u5","ad":"Zeynep Ak","rol":"OGRENCI","sertifikalar":["LAB_GUVENLIK"],"bakiye":0,"guvenilirlik":0}
+{"komut":"kullanici_ekle","id":"u1","ad":"Ali Er","rol":"MISAFIR","sertifikalar":[],"bakiye":-1,"guvenilirlik":200}
+{"komut":"kullanici_ekle","id":"u6","ad":"Ali Er","rol":"MISAFIR","sertifikalar":[],"bakiye":-1,"guvenilirlik":200}
+{"komut":"kaynak_ekle","id":"ODA-1","ad":"Toplantı Odası 1","tur":"ODA","izinli_roller":["OGRENCI"]}
+{"komut":"kaynak_ekle","id":"DRN-1","ad":"Drone 1","tur":"DRONE","izinli_roller":["OGRENCI"]}
+{"komut":"kaynak_ekle","id":"ODA-3","ad":"Toplantı Odası 3","tur":"ODA","izinli_roller":["OGRENCI","MISAFIR"]}
+{"komut":"kaynak_ekle","id":"ODA-1","ad":"Drone 1","tur":"DRONE","izinli_roller":["MISAFIR"]}
+{"komut":"kaynak_ekle","id":"ODA-3","ad":"Toplantı Odası 3","tur":"ODA","izinli_roller":["OGRENCI"]}
+{"komut":"kaynak_ekle","id":"ODA-3","ad":"Toplantı Odası 3","tur":"ODA","izinli_roller":["OGRENCI"]}
+{"komut":"kaynak_ekle","id":"LAB-2","ad":"Laboratuvar 2","tur":"LAB","izinli_roller":[]}
