@@ -8,6 +8,7 @@ Her fonksiyon bir sözlük döndürür:
 Zamanlar "YYYY-AA-GGTSS:DD" metni olarak gelir.
 """
 
+from rezervasyon import paket, talep, yukleyici, zaman
 from rezervasyon.modeller import Durum
 
 
@@ -19,9 +20,7 @@ class RezervasyonSistemi:
 
     @classmethod
     def dosyadan(cls, yol):
-        """Başlangıç dosyasını okuyup sistemi kurar (yukleyici.py, Erva)."""
-        from rezervasyon import yukleyici  # Erva yazınca çalışacak
-
+        """Başlangıç dosyasını okuyup sistemi kurar."""
         return cls(yukleyici.yukle(yol))
 
     # --- Saat (K6, K11) ---
@@ -30,14 +29,26 @@ class RezervasyonSistemi:
 
     # --- Talepler (K1-K5, K7, K10) ---
     def rezervasyon(self, kullanici, kaynak, baslangic, bitis):
-        raise NotImplementedError
+        return talep.rezervasyon(
+            self.durum, kullanici, kaynak, zaman.ayristir(baslangic), zaman.ayristir(bitis)
+        )
 
     def paket(self, kullanici, kalemler):
         """kalemler: [{"kaynak": ..., "baslangic": ..., "bitis": ...}, ...]"""
-        raise NotImplementedError
+        cevrilmis = [
+            {
+                "kaynak": k["kaynak"],
+                "baslangic": zaman.ayristir(k["baslangic"]),
+                "bitis": zaman.ayristir(k["bitis"]),
+            }
+            for k in kalemler
+        ]
+        return paket.paket(self.durum, kullanici, cevrilmis)
 
     def fiyat(self, kullanici, kaynak, baslangic, bitis):
-        raise NotImplementedError
+        return talep.fiyat(
+            self.durum, kullanici, kaynak, zaman.ayristir(baslangic), zaman.ayristir(bitis)
+        )
 
     # --- Durum makinesi (K8) ---
     def iptal(self, rezervasyon):
@@ -62,7 +73,9 @@ class RezervasyonSistemi:
 
     # --- Ekleme (K10 ekleme sırası) ---
     def kullanici_ekle(self, id, ad, rol, sertifikalar, bakiye, guvenilirlik):
-        raise NotImplementedError
+        return yukleyici.kullanici_ekle(
+            self.durum, id, ad, rol, sertifikalar, bakiye, guvenilirlik
+        )
 
     def kaynak_ekle(self, id, ad, tur, izinli_roller):
-        raise NotImplementedError
+        return yukleyici.kaynak_ekle(self.durum, id, ad, tur, izinli_roller)

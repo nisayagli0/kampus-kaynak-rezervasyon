@@ -1,0 +1,18 @@
+{"komut":"kullanici_ekle","id":"u1","ad":"u1","rol":"OGRENCI","sertifikalar":[],"bakiye":120,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"m1","ad":"m1","rol":"MISAFIR","sertifikalar":["DRONE_LISANS"],"bakiye":50,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"m2","ad":"m2","rol":"MISAFIR","sertifikalar":[],"bakiye":51,"guvenilirlik":80}
+{"komut":"kullanici_ekle","id":"m3","ad":"m3","rol":"MISAFIR","sertifikalar":[],"bakiye":50,"guvenilirlik":80}
+{"komut":"kaynak_ekle","id":"DRN-1","ad":"Drone 1","tur":"DRONE","izinli_roller":["MISAFIR"]}
+{"komut":"kaynak_ekle","id":"LAB-1","ad":"Lab 1","tur":"LAB","izinli_roller":["OGRENCI"]}
+{"komut":"rezervasyon","kullanici":"u1","kaynak":"LAB-1","baslangic":"2027-03-08T10:00","bitis":"2027-03-08T11:00"}
+{"komut":"rezervasyon","kullanici":"u1","kaynak":"ODA-1","baslangic":"2027-03-08T14:00","bitis":"2027-03-08T15:00"}
+{"komut":"rezervasyon","kullanici":"u3","kaynak":"ODA-1","baslangic":"2027-03-08T15:00","bitis":"2027-03-08T16:00"}
+{"komut":"rezervasyon","kullanici":"u3","kaynak":"ODA-1","baslangic":"2027-03-08T15:15","bitis":"2027-03-08T16:00"}
+{"komut":"rezervasyon","kullanici":"m1","kaynak":"DRN-1","baslangic":"2027-03-08T10:00","bitis":"2027-03-08T11:00"}
+{"komut":"rezervasyon","kullanici":"m1","kaynak":"DRN-1","baslangic":"2027-03-08T11:00","bitis":"2027-03-08T12:00"}
+{"komut":"rezervasyon","kullanici":"m1","kaynak":"DRN-1","baslangic":"2027-03-08T12:00","bitis":"2027-03-08T13:15"}
+{"komut":"rezervasyon","kullanici":"m1","kaynak":"DRN-1","baslangic":"2027-03-10T08:15","bitis":"2027-03-10T09:15"}
+{"komut":"rezervasyon","kullanici":"u1","kaynak":"DRN-1","baslangic":"2027-03-08T14:00","bitis":"2027-03-08T15:00"}
+{"komut":"rezervasyon","kullanici":"m3","kaynak":"DRN-1","baslangic":"2027-03-08T16:00","bitis":"2027-03-08T17:00"}
+{"komut":"fiyat","kullanici":"m1","kaynak":"DRN-1","baslangic":"2027-03-08T14:00","bitis":"2027-03-08T15:00"}
+{"komut":"rezervasyon","kullanici":"m1","kaynak":"DRN-1","baslangic":"2027-03-08T14:00","bitis":"2027-03-08T15:00"}
