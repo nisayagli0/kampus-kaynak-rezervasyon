@@ -5,7 +5,7 @@ Her işlev (durum, ...) alır ve Durum nesnesini değiştirir. Komut işlevleri
 döndürür. Zamana bağlı geçişleri (gelmedi, tamamlandi) saat.py çağırır.
 """
 
-from rezervasyon import zaman
+from rezervasyon import bekleme, zaman
 from rezervasyon.modeller import ONAYLI, KULLANIMDA, TAMAMLANDI, IPTAL, GELMEDI
 
 # K8: giriş penceresi, başlangıca göre dakika (ikisi dahil)
@@ -57,14 +57,6 @@ def iade_et(durum, kullanici_id, miktar):
     return eklenen
 
 
-def _bos_yer_olaylari(durum, kaynak_id):
-    """K9: boşalan kaynak için bekleme taraması (OTOMATIK_ATAMA olayları).
-
-    bekleme.py yazılınca bekleme.tara çağrılacak; şimdilik olay yok.
-    """
-    return []
-
-
 def giris(durum, rezervasyon_id):
     """K8, K10: ONAYLI -> KULLANIMDA.
 
@@ -99,7 +91,7 @@ def cikis(durum, rezervasyon_id):
         "durum": "TAMAM",
         "yeni_durum": TAMAMLANDI,
         "guvenilirlik": kullanici.guvenilirlik,
-        "olaylar": _bos_yer_olaylari(durum, rezervasyon.kaynak),
+        "olaylar": bekleme.tara(durum, rezervasyon.kaynak),
     }
 
 
@@ -130,7 +122,7 @@ def iptal(durum, rezervasyon_id):
         "iade": eklenen,
         "bakiye": kullanici.bakiye,
         "guvenilirlik": kullanici.guvenilirlik,
-        "olaylar": _bos_yer_olaylari(durum, rezervasyon.kaynak),
+        "olaylar": bekleme.tara(durum, rezervasyon.kaynak),
     }
 
 
