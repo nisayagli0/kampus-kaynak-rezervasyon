@@ -8,7 +8,8 @@ Her fonksiyon bir sözlük döndürür:
 Zamanlar "YYYY-AA-GGTSS:DD" metni olarak gelir.
 """
 
-from rezervasyon import paket, talep, yukleyici, zaman
+from rezervasyon import bekleme, durum_makinesi, paket, sorgu, talep, yukleyici, zaman
+from rezervasyon import saat as saat_modulu
 from rezervasyon.modeller import Durum
 
 
@@ -25,12 +26,18 @@ class RezervasyonSistemi:
 
     # --- Saat (K6, K11) ---
     def saat(self, zaman):
-        raise NotImplementedError
+        from rezervasyon.zaman import ayristir
+
+        return saat_modulu.ilerlet(self.durum, ayristir(zaman))
 
     # --- Talepler (K1-K5, K7, K10) ---
     def rezervasyon(self, kullanici, kaynak, baslangic, bitis):
         return talep.rezervasyon(
-            self.durum, kullanici, kaynak, zaman.ayristir(baslangic), zaman.ayristir(bitis)
+            self.durum,
+            kullanici,
+            kaynak,
+            zaman.ayristir(baslangic),
+            zaman.ayristir(bitis),
         )
 
     def paket(self, kullanici, kalemler):
@@ -47,29 +54,39 @@ class RezervasyonSistemi:
 
     def fiyat(self, kullanici, kaynak, baslangic, bitis):
         return talep.fiyat(
-            self.durum, kullanici, kaynak, zaman.ayristir(baslangic), zaman.ayristir(bitis)
+            self.durum,
+            kullanici,
+            kaynak,
+            zaman.ayristir(baslangic),
+            zaman.ayristir(bitis),
         )
 
     # --- Durum makinesi (K8) ---
     def iptal(self, rezervasyon):
-        raise NotImplementedError
+        return durum_makinesi.iptal(self.durum, rezervasyon)
 
     def giris(self, rezervasyon):
-        raise NotImplementedError
+        return durum_makinesi.giris(self.durum, rezervasyon)
 
     def cikis(self, rezervasyon):
-        raise NotImplementedError
+        return durum_makinesi.cikis(self.durum, rezervasyon)
 
     # --- Bekleme listesi (K9) ---
     def bekleme(self, kullanici, kaynak, baslangic, bitis):
-        raise NotImplementedError
+        return bekleme.ac(
+            self.durum,
+            kullanici,
+            kaynak,
+            zaman.ayristir(baslangic),
+            zaman.ayristir(bitis),
+        )
 
     # --- Sorgular ---
     def sorgu_kullanici(self, id):
-        raise NotImplementedError
+        return sorgu.kullanici(self.durum, id)
 
     def sorgu_kaynak(self, id, gun):
-        raise NotImplementedError
+        return sorgu.kaynak(self.durum, id, gun)
 
     # --- Ekleme (K10 ekleme sırası) ---
     def kullanici_ekle(self, id, ad, rol, sertifikalar, bakiye, guvenilirlik):
