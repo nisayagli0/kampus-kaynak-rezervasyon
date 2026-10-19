@@ -27,6 +27,7 @@ BAKIM_ETIKET = "Bakım"
 # Hazırlık süresi: çok soluk, rezervasyonun hemen yanında
 HAZIRLIK_DOLGU = QColor("#fff3c4")
 HAZIRLIK_CIZGI = QColor("#e0c060")
+HAZIRLIK_ETIKET = "Hazırlık"
 
 # Takvim zemini
 ZEMIN = QColor("#ffffff")
@@ -40,8 +41,17 @@ SOLUK_YAZI = QColor("#6b7785")
 SAAT_IMLECI = QColor("#c62828")
 SAAT_IMLECI_KALINLIK = 2
 
+# Sonuç mesajları
+BASARI_YAZI = QColor("#1b6e3a")
+HATA_YAZI = QColor("#b71c1c")
+
 # Yazı tipi
 YAZI_AILESI = "Segoe UI"
 YAZI_BOYUTU = 10
 YAZI_BOYUTU_KUCUK = 8
 YAZI_BOYUTU_BASLIK = 12
+
+
+def durum_etiketi(durum):
+    """Durum sabitinin ekranda görünen Türkçe adı."""
+    return DURUM_STIL[durum][3]
