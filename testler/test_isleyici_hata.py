@@ -21,6 +21,7 @@ def calistir(satirlar):
             capture_output=True,
             text=True,
             encoding="utf-8",
+            env={**os.environ, "PYTHONIOENCODING": "utf-8"},
         )
     return islem, [json.loads(s) for s in islem.stdout.splitlines()]
 
