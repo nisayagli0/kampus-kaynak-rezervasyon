@@ -23,9 +23,9 @@ GUN = "2027-03-08"
 
 # (kaynak, başlangıç, bitiş): kullanıcılar sırayla k1..k6 olarak dağıtılır
 PLAN = [
-    ("YAZ-2", "10:00", "12:00"),
-    ("YAZ-2", "13:00", "15:00"),
-    ("YAZ-2", "16:30", "18:00"),
+    ("ODA-3", "10:00", "12:00"),
+    ("ODA-3", "13:00", "15:00"),
+    ("ODA-3", "16:30", "18:00"),
     ("YAZ-3", "08:00", "10:00"),
     ("YAZ-3", "11:00", "12:30"),
     ("YAZ-3", "14:00", "17:00"),
@@ -43,6 +43,17 @@ PLAN = [
     ("YAZ-5", "15:00", "16:30"),
     ("YAZ-5", "18:00", "20:00"),
 ]
+
+
+def bul(oturum, kaynak, baslangic):
+    """Verilen kaynak ve başlangıçtaki rezervasyonun numarasını döndürür."""
+    for rez in oturum.durum.rezervasyonlar.values():
+        if (
+            rez.kaynak == kaynak
+            and rez.baslangic.strftime("%Y-%m-%dT%H:%M") == baslangic
+        ):
+            return rez.id
+    return None
 
 
 def hazirla(pencere):
@@ -65,6 +76,13 @@ def hazirla(pencere):
             tur="YAZICI",
             izinli_roller=["OGRENCI", "ARASTIRMACI"],
         )
+    oturum.komut(
+        "kaynak_ekle",
+        id="ODA-3",
+        ad="Toplantı Odası 3",
+        tur="ODA",
+        izinli_roller=["OGRENCI", "ARASTIRMACI"],
+    )
     for sira, (kaynak, bas, bit) in enumerate(PLAN):
         sonuc = oturum.komut(
             "rezervasyon",
@@ -76,8 +94,12 @@ def hazirla(pencere):
         if sonuc["durum"] != "TAMAM":
             print("Reddedildi:", kaynak, bas, bit, sonuc.get("kod"))
     oturum.komut("saat", zaman=f"{GUN}T09:10")
-    for rez in ("r8", "r12"):
-        oturum.komut("iptal", rezervasyon=rez)
+    # İptal edilecekleri numarayla değil kaynak ve başlangıç saatiyle buluruz;
+    # bir talep reddedilse bile numaralar kaysa da doğru rezervasyon iptal edilir.
+    for kaynak, bas in (("ODA-1", "14:00"), ("CIH-1", "13:00")):
+        rez = bul(oturum, kaynak, f"{GUN}T{bas}")
+        if rez:
+            oturum.komut("iptal", rezervasyon=rez)
     oturum.komut("saat", zaman=f"{GUN}T12:30")
     # iptal edilen aralığa yeni talep: ikisi aynı satırda üst üste gösterilmeli
     oturum.komut(
