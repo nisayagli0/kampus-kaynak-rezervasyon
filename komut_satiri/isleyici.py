@@ -14,8 +14,16 @@ from rezervasyon.sistem import RezervasyonSistemi
 
 # Komut adı -> RezervasyonSistemi metodu (sorgu ayrıca ele alınır)
 KOMUTLAR = {
-    "saat", "rezervasyon", "paket", "fiyat", "iptal", "giris", "cikis",
-    "bekleme", "kullanici_ekle", "kaynak_ekle",
+    "saat",
+    "rezervasyon",
+    "paket",
+    "fiyat",
+    "iptal",
+    "giris",
+    "cikis",
+    "bekleme",
+    "kullanici_ekle",
+    "kaynak_ekle",
 }
 
 
@@ -26,7 +34,9 @@ def komut_isle(sistem, komut):
 
     if ad == "sorgu":
         tur = alanlar.pop("tur")
-        sonuc = getattr(sistem, "sorgu_" + tur)(**alanlar)  # sorgu_kullanici / sorgu_kaynak
+        sonuc = getattr(sistem, "sorgu_" + tur)(
+            **alanlar
+        )  # sorgu_kullanici / sorgu_kaynak
     elif ad in KOMUTLAR:
         sonuc = getattr(sistem, ad)(**alanlar)
     else:
@@ -50,11 +60,16 @@ def main(argv):
             if not satir:  # boş satırlar atlanır
                 continue
             no += 1
+            komut_adi = None
             try:
-                sonuc = komut_isle(sistem, json.loads(satir))
-            except Exception as hata:  # program çökmez, satır stderr'e raporlanır
+                komut = json.loads(satir)
+                komut_adi = komut.get("komut")
+                sonuc = komut_isle(sistem, komut)
+            except (
+                Exception
+            ) as hata:  # çökmez; stderr'e yazılır, stdout'a RED satırı gider
                 print(f"{no}. komut işlenemedi: {hata!r}", file=sys.stderr)
-                continue
+                sonuc = {"komut": komut_adi, "durum": "RED", "kod": "BEKLENMEYEN_HATA"}
             print(json.dumps({"no": no, **sonuc}, ensure_ascii=False))
 
     return 0
